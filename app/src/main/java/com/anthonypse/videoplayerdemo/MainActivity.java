@@ -2,6 +2,7 @@ package com.anthonypse.videoplayerdemo;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -9,7 +10,7 @@ import com.anthonypse.jinglz_player.JinglzPlayer;
 import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
 
 public class MainActivity extends AppCompatActivity {
-
+    private static String TAG = "MainActivity";
     Button mStartButton;
     Button mPauseButton;
     Button mStopButton;
@@ -74,7 +75,15 @@ public class MainActivity extends AppCompatActivity {
     public void onPauseButtonPressed(View v){
         mStartButton.setVisibility(View.VISIBLE);
         mStartButton.setText("Play Random");
+        try {
         mPlayer.pause();
+
+        } catch( NullPointerException e ){
+            Log.d(TAG, "The video player is null.  Probably needs to be re-initialized");
+            //We don't need to do anything here.
+        } catch (Exception e){
+            Log.d(TAG, "Unknown Exception.  Idk what to do about it yet.");
+        }
     }
 
     public void onStopButtonPressed(View v){
