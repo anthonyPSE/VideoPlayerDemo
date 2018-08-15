@@ -72,23 +72,15 @@ public class MainActivity extends AppCompatActivity {
         mPlayer.start();
     }
 
-    public void onPauseButtonPressed(View v){
+    public void onPauseButtonPressed(View v) {
         mStartButton.setVisibility(View.VISIBLE);
-        mStartButton.setText("Play Random");
-        try {
+        mStartButton.setText("Resume");
         mPlayer.pause();
-
-        } catch( NullPointerException e ){
-            Log.d(TAG, "The video player is null.  Probably needs to be re-initialized");
-            //We don't need to do anything here.
-        } catch (Exception e){
-            Log.d(TAG, "Unknown Exception.  Idk what to do about it yet.");
-        }
     }
 
     public void onStopButtonPressed(View v){
         mStartButton.setVisibility(View.VISIBLE);
-        mStartButton.setText("Start");
+        mStartButton.setText("Play Random");
         mPlayer.stop();
     }
 }

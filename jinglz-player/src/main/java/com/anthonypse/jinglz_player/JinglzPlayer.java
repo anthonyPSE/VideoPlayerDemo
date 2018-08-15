@@ -29,7 +29,7 @@ import java.util.Random;
  * Plays a random video.  If you stop and restart then it plays another random video.
  */
 public class JinglzPlayer {
-
+    private static String TAG = "JinglzPlayer";
     private SimpleExoPlayerView mPlayerView;
     private Context mContext;
 
@@ -124,9 +124,16 @@ public class JinglzPlayer {
      */
     @Deprecated //Should actually be private
     public void stop(){
-        mPlayerView.getPlayer().stop();
-        mPlayerView.getPlayer().release();
-        mPlayerView.setPlayer(null);
+        try {
+            mPlayerView.getPlayer().stop();
+            mPlayerView.getPlayer().release();
+            mPlayerView.setPlayer(null);
+        } catch( NullPointerException e ){
+            Log.d(TAG, "The video player is null.  Probably needs to be re-initialized");
+            //We don't need to do anything here.
+        } catch (Exception e){
+            Log.d(TAG, "Unknown Exception.  Idk what to do about it yet.");
+        }
     }
 
     /**
@@ -134,7 +141,14 @@ public class JinglzPlayer {
      */
     @Deprecated //Should actually be private
     public void pause(){
-        mPlayerView.getPlayer().setPlayWhenReady(false);
+        try {
+            mPlayerView.getPlayer().setPlayWhenReady(false);
+        } catch( NullPointerException e ){
+            Log.d(TAG, "The video player is null.  Probably needs to be re-initialized");
+            //We don't need to do anything here.
+        } catch (Exception e){
+            Log.d(TAG, "Unknown Exception.  Idk what to do about it yet.");
+        }
     }
 
     /**
