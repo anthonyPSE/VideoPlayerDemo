@@ -3,6 +3,7 @@ package com.anthonypse.videoplayerdemo;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -15,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_player);
+        setContentView(R.layout.activity_main);
 
         bindViews();
     }
@@ -46,11 +47,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void bindViews(){
+        Log.d(TAG, "bindViews");
         mStartPlayerActivity = findViewById(R.id.buttonStart);
     }
 
     public void onStartButtonPressed( View v ){
-        Intent intent = new Intent(this, JinglzPlayerActivity.class);
+        Log.d(TAG, "onStartButtonPressed");
+        Intent intent = new Intent(getApplicationContext(), JinglzPlayerActivity.class);
         startActivity(intent);
     }
 
