@@ -1,32 +1,21 @@
 package com.anthonypse.videoplayerdemo;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.anthonypse.jinglz_player.JinglzPlayer;
-import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
+import com.anthonypse.jinglz_player.JinglzPlayerActivity;
 
 public class MainActivity extends AppCompatActivity {
     private static String TAG = "MainActivity";
-    Button mStartButton;
-    Button mPauseButton;
-    Button mStopButton;
-
-    ///The view that the user sees and (possibly) interacts with
-    //We want to remove exoplayer dependencies from the main project to the library.  Needs some
-    //investigation
-    SimpleExoPlayerView mPlayerView;
-
-    JinglzPlayer mPlayer;
-
+    Button mStartPlayerActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_player);
 
         bindViews();
     }
@@ -34,8 +23,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        mStartButton.setVisibility(View.INVISIBLE);
-        mPlayer = new JinglzPlayer(mPlayerView, getApplicationContext());
     }
 
 
@@ -55,32 +42,16 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy(){
-        mPlayer.release();
         super.onDestroy();
     }
 
     private void bindViews(){
-        mStartButton = findViewById(R.id.buttonStart);
-        mPauseButton = findViewById(R.id.buttonPause);
-        mStopButton = findViewById(R.id.buttonStop);
-
-        mPlayerView = findViewById(R.id.videoView);
+        mStartPlayerActivity = findViewById(R.id.buttonStart);
     }
 
     public void onStartButtonPressed( View v ){
-        mStartButton.setVisibility(View.INVISIBLE);
-        mPlayer.start();
+        Intent intent = new Intent(this, JinglzPlayerActivity.class);
+        startActivity(intent);
     }
 
-    public void onPauseButtonPressed(View v) {
-        mStartButton.setVisibility(View.VISIBLE);
-        mStartButton.setText("Resume");
-        mPlayer.pause();
-    }
-
-    public void onStopButtonPressed(View v){
-        mStartButton.setVisibility(View.VISIBLE);
-        mStartButton.setText("Play Random");
-        mPlayer.stop();
-    }
 }
