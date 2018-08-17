@@ -114,7 +114,6 @@ public class JinglzPlayer {
      * @param max min acceptable value
      * @return a random number between min and max, inclusive
      */
-    @Deprecated
     private int getRandomNumber(int min,int max) {
         return (new Random()).nextInt((max - min) + 1) + min;
     }
@@ -122,7 +121,7 @@ public class JinglzPlayer {
     /**
      * Stops playback and releases allocated resources.
      */
-    @Deprecated //Should actually be private
+    //Should actually be private
     public void stop(){
         try {
             mPlayerView.getPlayer().stop();
@@ -139,7 +138,7 @@ public class JinglzPlayer {
     /**
      * Pauses playback
      */
-    @Deprecated //Should actually be private
+    //Should actually be private
     public void pause(){
         try {
             mPlayerView.getPlayer().setPlayWhenReady(false);
@@ -154,7 +153,7 @@ public class JinglzPlayer {
     /**
      * resumes or starts playback
      */
-    @Deprecated //Should actually be private
+    //Should actually be private
     public void start(){
         try {
             mPlayerView.getPlayer().setPlayWhenReady(true);
