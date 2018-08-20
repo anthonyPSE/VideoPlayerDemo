@@ -55,7 +55,7 @@ public class JinglzPlayerActivity extends AppCompatActivity{
     }
 
     @Override
-    protected void onDestroy(){
+    protected void onDestroy() {
         mPlayer.release();
         super.onDestroy();
     }

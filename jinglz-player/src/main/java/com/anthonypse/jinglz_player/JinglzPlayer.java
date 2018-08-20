@@ -46,8 +46,10 @@ public class JinglzPlayer {
     }
 
     //Call this to release resources used by this class.
-    public void release(){
-        mPlayerView.getPlayer().release();
+    public void release() {
+        if (mPlayerView.getPlayer() != null) {
+            mPlayerView.getPlayer().release();
+        }
     }
 
     private void initPlayer(){
